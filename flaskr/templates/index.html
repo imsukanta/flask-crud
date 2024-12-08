@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Home{% endblock title %} {% block
+content %}
+<div class="container-lg">
+  <form method="post" action="{{ url_for('index.index') }}">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name='name' placeholder="Enter Your Full Name" />
+    </div>
+    <div class="mb-3">
+      <label for="Email" class="form-label">Email</label>
+      <input type="Email" class="form-control" id="email" name="email" placeholder="Enter Email address" />
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Adress</label>
+      <textarea class="form-control" id="address" rows="3" name="address" placeholder="Enter Your Address"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Detail</button>
+  </form>
+</div>
+<div class="container-lg my-5">
+  <table class="table mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.address}}</td>
+        <td><!-- Button trigger modal -->
+          <a type="button" href="{{ url_for('index.update',id=user.id) }}" class="btn btn-primary">Edit</a>
+          <a type="button" href="{{ url_for('index.delete',id=user.id) }}" class="btn btn-primary">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

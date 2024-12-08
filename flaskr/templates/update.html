@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Update{% endblock title %}
+{% block content %}
+<div class="container-lg">
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <div class="mb-3">
+      <label for="uname" class="form-label">Name</label>
+      <input type="text" class="form-control" id="uname" value="{{user.name}}" name='uname' placeholder="Enter Your Full Name" />
+    </div>
+    <div class="mb-3">
+      <label for="uemail" class="form-label">Email</label>
+      <input type="Email" class="form-control" id="uemail" value="{{user.email}}" name="uemail" placeholder="Enter Email address" />
+    </div>
+    <div class="mb-3">
+      <label for="uaddress" class="form-label">Adress</label>
+      <textarea class="form-control" id="uaddress" rows="3" name="uaddress" placeholder="Enter Your Address">{{user.address}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Detail</button>
+  </form>
+</div>
+{% endblock content %}
